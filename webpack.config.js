@@ -9,7 +9,8 @@ module.exports = {
 	entry: toObject(glob.sync('./src/**/*.js*'),'./src'),  
 	output: {
 		path: path.resolve(__dirname,'www'),
-		filename: '[name].js'
+        filename: '[name].js',
+        chunkFilename: '[chunkhash].module.js'
     },
 	plugins: [
         new CleanWebpackPlugin(['www']),
@@ -17,15 +18,10 @@ module.exports = {
             from: 'src/**/*.html',
             to: '[name].[ext]'
         }]),
-        /*new webpack.SourceMapDevToolPlugin({
-            test: /\.js($|\?)/i,
-            include: /src/,
-            filename: '[name].js.map',
-            exclude: /node_modules/
-          }),*/
+
         new UglifyJSPlugin(),
 
-	],
+    ],
 	module: {
 		rules: [
             {
@@ -35,8 +31,18 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                    presets: ['env']
-                    }
+                        presets: ['env'],
+                        plugins: [
+                            'syntax-dynamic-import',
+                            ["transform-runtime", {
+                                "helpers": false,
+                                "polyfill": false,
+                                "regenerator": true,
+                                "moduleName": "babel-runtime"
+                              }]
+                        ]
+                    },
+                    
                 }    
             },
             {

@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="app.js"></script>
+    <link rel="stylesheet" href="../node_modules/vuetify/dist/vuetify.min.css"/>
+    <script src="app.js" async></script>
 </head>
 <body>
-    <div id="intro" style="text-align:center;">
-        <h1>{{ message }}</h1>
-    </div>
+    <main id="app">
+        <router-view></router-view>
+    </main>
 </body>
 </html>
+<link rel="preload" as="style" onload="this.rel='stylesheet'" href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
