@@ -6,6 +6,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
 	entry: toObject(glob.sync('./src/**/*.js*'),'./src'),  
 	output: {
 		path: path.resolve(__dirname,'www'),
@@ -22,6 +23,9 @@ module.exports = {
         new UglifyJSPlugin(),
 
     ],
+    resolve:{
+        extensions: ['.js', '.styl']
+    },
 	module: {
 		rules: [
             {
@@ -56,6 +60,19 @@ module.exports = {
                         collapseWhitespace: false
                     }
                 }
+            },
+            {
+                test: /\.styl$/,
+                include: /src/,
+                use: [
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'stylus-loader'
+                    }
+                ]
+                
             }
         ]
     },

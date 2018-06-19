@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../node_modules/vuetify/dist/vuetify.min.css"/>
-    <script src="app.js" async></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preload" as="style" onload="this.rel='stylesheet'" href="../node_modules/vuetify/dist/vuetify.min.css" async/>
+  <style>.app-stat{ margin-top: 15vh; }</style>
 </head>
 <body>
-    <main id="app">
-        <router-view></router-view>
-    </main>
+  <main id="app">
+    <router-view>
+      <center class="app-stat">Application is starting. . . Please wait . . .</center>
+    </router-view>
+  </main>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" async>
 </body>
 </html>
-<link rel="preload" as="style" onload="this.rel='stylesheet'" href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+<script src="app.js" async></script>
